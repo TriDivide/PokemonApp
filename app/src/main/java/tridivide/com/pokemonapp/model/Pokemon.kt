@@ -11,6 +11,7 @@ class Pokemon(snapshot: DataSnapshot) {
     lateinit var typeOne: String
 
     var typeTwo: String? = ""
+    var index: String? = ""
 
     init {
         try {
@@ -21,6 +22,7 @@ class Pokemon(snapshot: DataSnapshot) {
             typeOne = data["typeOne"] as String
 
             typeTwo = data["typeTwo"] as String?
+            index = data["index"] as String?
 
         } catch( e: Exception) {
             e.printStackTrace()
