@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "3525552265",
+    "firebase_url": "https://pokemonapp-24a3d.firebaseio.com",
+    "project_id": "pokemonapp-24a3d",
+    "storage_bucket": "pokemonapp-24a3d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:3525552265:android:76182c2037504091",
+        "android_client_info": {
+          "package_name": "tridivide.com.pokemonapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "3525552265-av2245ht9b57hr4qi0nsbhagkcec8aq0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmqHeablXO3q8T4ubf-LvF_IaQ2G0al2o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
