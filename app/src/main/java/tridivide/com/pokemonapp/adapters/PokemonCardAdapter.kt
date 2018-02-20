@@ -24,7 +24,7 @@ class PokemonCardAdapter(context: Context, resource: Int, list: ArrayList<Pokemo
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View? {
-        var returnView: View? = null
+        val returnView: View?
         if (convertView == null) {
             returnView = try {
                 m_vi.inflate(m_resource, null)
@@ -33,27 +33,29 @@ class PokemonCardAdapter(context: Context, resource: Int, list: ArrayList<Pokemo
                 e.printStackTrace()
                 View(context)
             }
+            setUI(returnView, position)
+            return returnView
         }
+        setUI(convertView, position)
+        return convertView
+    }
 
+    private fun setUI(view: View, position: Int) {
         val pokemon: Pokemon? = if(count > position) getItem(position) else null
-
-        val name: TextView? = returnView?.findViewById(R.id.pokemon_card_name)
+        val name: TextView? = view.findViewById(R.id.pokemon_card_name)
         name?.text = pokemon?.name ?: ""
 
 
-        val typeOne: TextView? = returnView?.findViewById(R.id.pokemon_card_type_one)
+        val typeOne: TextView? = view.findViewById(R.id.pokemon_card_type_one)
         typeOne?.text = pokemon?.typeOne ?: ""
 
 
-        val typeTwo: TextView? = returnView?.findViewById(R.id.pokemon_card_type_two)
+        val typeTwo: TextView? = view.findViewById(R.id.pokemon_card_type_two)
         typeTwo?.text = pokemon?.typeTwo ?: ""
 
 
-        val index: TextView? = returnView?.findViewById(R.id.pokemon_card_dex_number)
+        val index: TextView? = view.findViewById(R.id.pokemon_card_dex_number)
         index?.text = pokemon?.index ?: ""
-
-
-        return returnView
     }
 
 }
