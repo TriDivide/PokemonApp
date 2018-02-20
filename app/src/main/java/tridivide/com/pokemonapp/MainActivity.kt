@@ -1,8 +1,10 @@
 package tridivide.com.pokemonapp
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ListView
+import kotlinx.android.synthetic.main.main_layout.*
 import tridivide.com.pokemonapp.adapters.PokemonCardAdapter
 import tridivide.com.pokemonapp.model.Pokemon
 import tridivide.com.pokemonapp.model.PokemonModel
@@ -21,11 +23,18 @@ class MainActivity : AppCompatActivity(), Observer {
 
         val dataList: ListView = findViewById(R.id.pokemon_list)
 
+        add_pokemon.setOnClickListener { addPokemon() }
+
         val data:ArrayList<Pokemon> = ArrayList()
         m_pokemonListAdapter = PokemonCardAdapter(this, R.layout.pokemon_card_item, data)
         dataList.adapter = m_pokemonListAdapter
 
 
+    }
+
+    private fun addPokemon() {
+        val intent = Intent(this, AddPokemonActivity::class.java)
+        startActivity(intent)
     }
 
     override fun update(p0: Observable?, p1: Any?) {

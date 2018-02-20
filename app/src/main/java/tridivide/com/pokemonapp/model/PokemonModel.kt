@@ -1,6 +1,7 @@
 package tridivide.com.pokemonapp.model
 
 import android.util.Log
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.database.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -62,6 +63,15 @@ object PokemonModel: Observable() {
 
     fun getData(): ArrayList<Pokemon>? {
         return m_pokemonList
+    }
+
+    fun savePokemon(data: Pokemon, onComplete: OnCompleteListener<Void>? ) {
+        getDatabaseRef()?.updateChildren(data.toMap())?.addOnCompleteListener { task ->
+            if (task.isComplete) {
+                onComplete?.onComplete(task)
+            }
+        }
+
     }
 
 
