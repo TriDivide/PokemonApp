@@ -13,6 +13,8 @@ data class Pokemon(private val snapshot: DataSnapshot?) {
     var typeTwo: String? = ""
     var index: String? = ""
 
+    var imageRefs: HashMap<String, String>? = HashMap()
+
     init {
         try {
             if (snapshot != null) {
@@ -32,6 +34,7 @@ data class Pokemon(private val snapshot: DataSnapshot?) {
 
             typeTwo = data["typeTwo"] as String
             //index = data["index"] as String?
+            imageRefs = data["imageRefs"] as HashMap<String, String>
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -42,7 +45,7 @@ data class Pokemon(private val snapshot: DataSnapshot?) {
         map["name"] = name
         map["typeOne"] = typeOne
         map["typeTwo"] = typeTwo ?: ""
-
+        map["imageRefs"] = imageRefs ?: ""
         return map
     }
 }

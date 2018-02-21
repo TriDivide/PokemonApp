@@ -33,6 +33,7 @@ dependencies {
     compile "org.jetbrains.anko:anko-common:0.8.3"
     compile 'com.google.firebase:firebase-core:11.8.0'
     compile 'com.google.firebase:firebase-database:11.8.0'
+    compile 'com.google.firebase:firebase-storage:11.8.0'
     // Rounding image library: https://github.com/pungrue26/SelectableRoundedImageView
     compile 'com.joooonho:selectableroundedimageview:1.0.1'
     apply plugin: 'com.google.gms.google-services'
