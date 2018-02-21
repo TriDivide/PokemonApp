@@ -13,7 +13,8 @@ import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity(), Observer {
 
-    private var m_pokemonListAdapter: PokemonCardAdapter? = null
+    private var mPokemonListAdapter: PokemonCardAdapter? = null
+    private var mPokemonObserver: Observer? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,8 +27,8 @@ class MainActivity : AppCompatActivity(), Observer {
         add_pokemon.setOnClickListener { addPokemon() }
 
         val data:ArrayList<Pokemon> = ArrayList()
-        m_pokemonListAdapter = PokemonCardAdapter(this, R.layout.pokemon_card_item, data)
-        dataList.adapter = m_pokemonListAdapter
+        mPokemonListAdapter = PokemonCardAdapter(this, R.layout.pokemon_card_item, data)
+        dataList.adapter = mPokemonListAdapter
 
 
     }
@@ -38,29 +39,32 @@ class MainActivity : AppCompatActivity(), Observer {
     }
 
     override fun update(p0: Observable?, p1: Any?) {
-        m_pokemonListAdapter?.clear()
 
-        val data = PokemonModel.getData()
-        if (data != null) {
-            m_pokemonListAdapter?.clear()
-            m_pokemonListAdapter?.addAll(data)
-            m_pokemonListAdapter?.notifyDataSetChanged()
-        }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        PokemonModel.addObserver(this)
     }
 
     override fun onResume() {
         super.onResume()
-        PokemonModel.addObserver(this)
+        mPokemonObserver = Observer { _, _ -> refreshList() }
+        PokemonModel.addObserver(mPokemonObserver)
+        refreshList()
+    }
+
+    private fun refreshList() {
+        mPokemonListAdapter?.clear()
+
+        val data = PokemonModel.getData()
+        if (data != null) {
+            mPokemonListAdapter?.clear()
+            mPokemonListAdapter?.addAll(data)
+            mPokemonListAdapter?.notifyDataSetChanged()
+        }
     }
 
     override fun onStop() {
         super.onStop()
-        PokemonModel.deleteObserver(this)
+        if (mPokemonObserver != null) {
+            PokemonModel.deleteObserver(mPokemonObserver)
+        }
     }
 
     override fun onPause() {

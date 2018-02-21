@@ -2,14 +2,12 @@ package tridivide.com.pokemonapp
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
 import kotlinx.android.synthetic.main.add_pokemon_layout.*
 import org.jetbrains.anko.toast
 import tridivide.com.pokemonapp.model.Pokemon
 
 import tridivide.com.pokemonapp.model.PokemonModel
-import tridivide.com.pokemonapp.model.PokemonModel.savePokemon
 
 
 class AddPokemonActivity: AppCompatActivity() {
@@ -32,7 +30,7 @@ class AddPokemonActivity: AppCompatActivity() {
             return
         }
 
-        val pokemon = Pokemon()
+        val pokemon = Pokemon(null)
         pokemon.name = add_pokemon_name.text.toString()
         pokemon.typeOne = add_pokemon_type_one.text.toString()
         pokemon.typeTwo = add_pokemon_two?.text.toString()

@@ -66,7 +66,7 @@ object PokemonModel: Observable() {
     }
 
     fun savePokemon(data: Pokemon, onComplete: OnCompleteListener<Void>? ) {
-        getDatabaseRef()?.updateChildren(data.toMap())?.addOnCompleteListener { task ->
+        getDatabaseRef()?.push()?.updateChildren(data.toMap())?.addOnCompleteListener { task ->
             if (task.isComplete) {
                 onComplete?.onComplete(task)
             }
